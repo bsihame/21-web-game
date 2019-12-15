@@ -26,12 +26,10 @@ document.addEventListener("DOMContentLoaded", async() => {
   const getCards = async (num) => {
     try{
       //fetch shuffle deck
-      let card = await axios.get("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1");
+      //let card = await axios.get("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1");
       //debugger
       
-      deckId = card.data.deck_id
-
-
+      //deckId = card.data.deck_id
 
       let drawCards = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${num}`);
       debugger
@@ -73,8 +71,8 @@ document.addEventListener("DOMContentLoaded", async() => {
   })
 
   hit.addEventListener("click", ()=> {
-    getOneCard(1);
+    getCards(1);
   });
-
+getId()
  
 });
