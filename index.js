@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  //variable
-  //getCards()
-  // let div = document.querySelector("#startGame");
+  //declare variables
   let div = document.querySelector("#startGame");
   let start = document.querySelector("#start");
   let deckId;
@@ -11,7 +9,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let displayScore = document.createElement("h1");
   div.appendChild(displayScore);
-
+  const player = () => {
+    getCards(2);
+    getCards(1);
+  }
   const getId = async () => {
     try {
       //get one shuffled deck
@@ -27,12 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const getCards = async num => {
     try {
-      //fetch shuffle deck
-      //let card = await axios.get("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1");
-      //debugger
-
-      //deckId = card.data.deck_id
-
+      // draw cards depend of the rules
       let drawCards = await axios.get(
         `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${num}`
       );
@@ -77,6 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   stay.addEventListener("click", ()=> {
     getCards(3);
   })
-  
+
   getId();
+  player()
 });
