@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     getCards(2);
     getCards(1);
   }
+  const computer = () => {
+    getCards(3);
+  }
+
   const getId = async () => {
     try {
       //get one shuffled deck
@@ -75,5 +79,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   })
 
   getId();
-  player()
+  player();
+  computer()
 });
