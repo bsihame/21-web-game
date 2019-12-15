@@ -72,5 +72,9 @@ document.addEventListener("DOMContentLoaded", async() => {
     getCards(2);
   })
 
+  hit.addEventListener("click", ()=> {
+    getOneCard(1);
+  });
+
  
 });
