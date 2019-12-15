@@ -66,6 +66,11 @@ document.addEventListener("DOMContentLoaded", async() => {
       console.log(err)
     }
   }
+  // add event listener
+  start.addEventListener("click", () => {
+      
+    getCards(2);
+  })
 
  
 });
