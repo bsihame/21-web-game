@@ -1,21 +1,18 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   //declare variables
-  let div = document.querySelector("#startGame");
+
+  let divPlayer = document.querySelector("#player-turn");
+  let divComputer = document.querySelector("#computer-turn");
   let start = document.querySelector("#start");
   let deckId;
-  let score = 0;
-  let count;
+  let playerScore = 0;
+  let computerScore = 0;
   let value;
 
-  let displayScore = document.createElement("h1");
-  div.appendChild(displayScore);
-  const player = () => {
-    getCards(2);
-    getCards(1);
-  }
-  const computer = () => {
-    getCards(3);
-  }
+  let displayScorePlayer = document.createElement("p");
+  let displayScoreComputer = document.createElement("p");
+  divPlayer.appendChild(displayScorePlayer);
+  divComputer.appendChild(displayScoreComputer);
 
   const getId = async () => {
     try {
@@ -24,61 +21,92 @@ document.addEventListener("DOMContentLoaded", async () => {
         "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
       );
       deckId = card.data.deck_id;
-      debugger;
     } catch (err) {
       console.log(err);
     }
   };
 
-  const getCards = async num => {
+  const player = async num => {
     try {
       // draw cards depend of the rules
       let drawCards = await axios.get(
         `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${num}`
       );
-      debugger;
 
       let cards = drawCards.data.cards;
       cards.forEach(card => {
-        //creat
-        let img = document.createElement("img");
-        let ulImg = document.createElement("ul");
-        let displayCard = document.createElement("li");
-
-        img.src = card.image;
-        displayCard.appendChild(img);
-        ulImg.appendChild(displayCard);
-        div.appendChild(ulImg);
+        let imgPlayer = document.createElement("img");
+        imgPlayer.src = card.image;
+        divPlayer.appendChild(imgPlayer);
 
         value = card.value;
+
         if (value === "ACE") {
-          score += 11;
+          if (playerScore <= 10) {
+            playerScore += 11;
+          } else {
+            playerScore += 1;
+          }
         } else if (value === "KING" || value === "QUEEN" || value === "JACK") {
-          score += 10;
+          playerScore += 10;
         } else {
-          score += Number(value);
+          playerScore += Number(value);
+        }
+      });
+      displayScorePlayer.innerText = playerScore;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const computer = async num => {
+    try {
+      // draw cards depend of the rules
+      let drawCards = await axios.get(
+        `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${num}`
+      );
+      let cards = drawCards.data.cards;
+      
+      cards.forEach(card => {
+       
+        let imgComputer = document.createElement("img");
+        imgComputer.src = card.image;
+      
+        divComputer.appendChild(imgComputer);
+       
+        value = card.value;
+
+        if (value === "ACE") {
+          if (computerScore <= 10) {
+            computerScore += 11;
+          } else {
+            computerScore += 1;
+          }
+        } else if (value === "KING" || value === "QUEEN" || value === "JACK") {
+          computerScore += 10;
+        } else {
+          computerScore += Number(value);
         }
       });
 
-      displayScore.innerText = score;
+      displayScoreComputer.innerText = computerScore;
+    
     } catch (err) {
       console.log(err);
     }
   };
   // add event listeners
+
+  getId();
   start.addEventListener("click", () => {
-    getCards(2);
+    player(2);
   });
 
   hit.addEventListener("click", () => {
-    getCards(1);
+    player(1);
   });
 
-  stay.addEventListener("click", ()=> {
-    getCards(3);
-  })
-
-  getId();
-  player();
-  computer()
+  stay.addEventListener("click", () => {
+    computer(3);
+  });
 });
