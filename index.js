@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let computerScore = 0;
   let value;
 
+  
   let displayScorePlayer = document.createElement("p");
   let displayScoreComputer = document.createElement("p");
   divPlayer.appendChild(displayScorePlayer);
@@ -38,9 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let imgPlayer = document.createElement("img");
         imgPlayer.src = card.image;
         divPlayer.appendChild(imgPlayer);
-
         value = card.value;
-
+        
         if (value === "ACE") {
           if (playerScore <= 10) {
             playerScore += 11;
@@ -53,7 +53,19 @@ document.addEventListener("DOMContentLoaded", () => {
           playerScore += Number(value);
         }
       });
+      if (playerScore === 21) {
+        result = "You Won!!";
+        console.log("P1")
+      } else if (playerScore > 21) {
+        result = "You Are Busted!!";
+        console.log("P2")
+      }
       displayScorePlayer.innerText = playerScore;
+      let h2 = document.createElement("h2");
+      let div = document.querySelector("#startGame")
+      h2.innerText = result;
+      div.appendChild(h2)
+
     } catch (err) {
       console.log(err);
     }
@@ -66,16 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
         `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${num}`
       );
       let cards = drawCards.data.cards;
-      
+
       cards.forEach(card => {
-       
         let imgComputer = document.createElement("img");
         imgComputer.src = card.image;
-      
         divComputer.appendChild(imgComputer);
-       
         value = card.value;
-
+        
         if (value === "ACE") {
           if (computerScore <= 10) {
             computerScore += 11;
@@ -87,17 +96,31 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           computerScore += Number(value);
         }
+        // check the winner
       });
-
-      displayScoreComputer.innerText = computerScore;
+        if (computerScore === 21) {
+          result = "You Are Busted!!";
+          console.log("C1")
+        } else if (computerScore > 21) {
+          result = "You Won!!";
+          console.log("C2")
+        }
     
+        displayScoreComputer.innerText = computerScore;
+        let h2 = document.createElement("h2");
+        let div = document.querySelector("#startGame")
+        h2.innerText = result;
+        div.appendChild(h2)
+      
     } catch (err) {
       console.log(err);
     }
   };
+
   // add event listeners
 
   getId();
+  
   start.addEventListener("click", () => {
     player(2);
   });
