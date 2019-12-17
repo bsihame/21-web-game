@@ -1,38 +1,67 @@
-html {
+/* html {
   height: 100%;
   width: 100%;
-}
+} */
 body  {
   background-image: url("https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2019/12/12/Pictures/_8c4a80e4-1cde-11ea-9a53-e5149fe5d3ed.jpg");
-  /* background-image: 100%; */
   background-repeat: no-repeat;
   background-size: 100%; 
   background-color:#C38F39;
   background-position: center;
-
-   /* width: 739vh;
-  height: 789vh;  */
   align-content: center;
   font-family: sans-serif;
 }
+
 h1 {
   text-align: center;
-  
+  height:20px;
+  color: black;
+  text-shadow: 0 1px 0 rgb(255, 255, 255);
+  font-size: 50px ;
+  text-decoration: rgb(0, 0, 0);
 }
+
 #startGame {
   display: flex;
   justify-content: center;
+  margin:0;
 }
+
 #buttons {
   display: flex;
   justify-content: center;
+} 
+
+#start, #hit, #stay {
+  display: flex;
+  justify-content: center;
+  border-radius: 200px;
+  height: 55px;
+  width: 147px;
+  margin: 20px;
+  border-bottom-style: dashed;
+  background-color: green;
+  font-size: 26px;
+  font-weight: 400;
 }
+
 h2 {
-  font-size: x-large;
+  font-family: sans-serif;
+  height:20px;
+  color: black;
+  text-shadow: 0 1px 0 rgb(255, 255, 255);
+  font-size: 50px ;
+  text-decoration: rgb(0, 0, 0);
+  margin-top: 20px;
+  margin-left: 0px;
 }
 
 p{
-  font-family: sans-serif;
+  height:20px;
+  color: black;
+  text-shadow: 0 1px 0 rgb(255, 255, 255);
+  font-size: 50px ;
+  text-decoration: rgb(0, 0, 0);
 }
 
 
