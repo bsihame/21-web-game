@@ -1,7 +1,4 @@
-/* html {
-  height: 100%;
-  width: 100%;
-} */
+
 body  {
   background-image: url("https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2019/12/12/Pictures/_8c4a80e4-1cde-11ea-9a53-e5149fe5d3ed.jpg");
   background-repeat: no-repeat;
@@ -50,7 +47,7 @@ h2 {
   height:20px;
   color: black;
   text-shadow: 0 1px 0 rgb(255, 255, 255);
-  font-size: 50px ;
+  font-size: 70px ;
   text-decoration: rgb(0, 0, 0);
   margin-top: 20px;
   margin-left: 0px;
@@ -58,10 +55,21 @@ h2 {
 
 p{
   height:20px;
-  color: black;
+  color: white;
   text-shadow: 0 1px 0 rgb(255, 255, 255);
-  font-size: 50px ;
+  font-size: 60px ;
   text-decoration: rgb(0, 0, 0);
+  margin-inline-start: 10px;
+  margin-inline-end: 10px;
+}
+#playerCard {
+  display: flex;
+  float: left;
+}
+
+#computerCards {
+  display: flex;
+  float: right;
 }
 
 

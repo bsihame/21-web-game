@@ -1,20 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
   //declare variables
-
   let divPlayer = document.querySelector("#player-turn");
+  divPlayer.id = "playerCards";
   let divComputer = document.querySelector("#computer-turn");
+  divComputer.id = "computerCards";
   let start = document.querySelector("#start");
   let deckId;
   let playerScore = 0;
   let computerScore = 0;
   let value;
   let result;
-
   let displayScorePlayer = document.createElement("p");
   let displayScoreComputer = document.createElement("p");
   divPlayer.appendChild(displayScorePlayer);
   divComputer.appendChild(displayScoreComputer);
 
+  // function to get id deck
   const getId = async () => {
     try {
       //get one shuffled deck
@@ -26,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(err);
     }
   };
-
-  const player = async num => {
+  // player function
+  const playerCard = async num => {
     try {
       // draw cards depend of the rules
       let drawCards = await axios.get(
@@ -55,32 +56,31 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (playerScore === 21) {
         result = "You Won!!";
-        let h2 = document.createElement("h2")
+        let h2 = document.createElement("h2");
         let div = document.querySelector("#startGame");
-        h2.innerText = result
-        div.appendChild(h2)
-
-          hit.style.visibility = "hidden"
-          stay.style.visibility = "hidden"
-      } else if (playerScore > 21) {
-        result = "You Are Busted!!";
-      
-        let h2 = document.createElement("h2")
-        let div = document.querySelector("#startGame");
-        h2.innerText = result
+        h2.innerText = result;
         div.appendChild(h2);
 
-      hit.style.visibility = "hidden"
-      stay.style.visibility = "hidden"
+        hit.style.visibility = "hidden";
+        stay.style.visibility = "hidden";
+      } else if (playerScore > 21) {
+        result = "You Are Busted!!";
+
+        let h2 = document.createElement("h2");
+        let div = document.querySelector("#startGame");
+        h2.innerText = result;
+        div.appendChild(h2);
+
+        hit.style.visibility = "hidden";
+        stay.style.visibility = "hidden";
       }
       displayScorePlayer.innerText = playerScore;
-      
     } catch (err) {
       console.log(err);
     }
   };
-
-  const computer = async num => {
+  // computer player function
+  const computerCard = async num => {
     try {
       // draw cards depend of the rules
       let drawCards = await axios.get(
@@ -89,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let cards = drawCards.data.cards;
 
       cards.forEach(card => {
-
         let imgComputer = document.createElement("img");
         imgComputer.src = card.image;
         divComputer.appendChild(imgComputer);
@@ -110,26 +109,25 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (computerScore === 21) {
         result = "You Are Busted!!";
-        let h2 = document.createElement("h2")
+        let h2 = document.createElement("h2");
         let div = document.querySelector("#startGame");
-        h2.innerText = result
-        div.appendChild(h2)
-
-        hit.style.visibility = "hidden"
-        stay.style.visibility = "hidden"
-      } else if (computerScore > 21) {
-        result = "You Won!!";
-        let h2 = document.createElement("h2")
-        let div = document.querySelector("#startGame");
-        h2.innerText = result
+        h2.innerText = result;
         div.appendChild(h2);
 
-        hit.style.visibility = "hidden"
-        stay.style.visibility = "hidden"
+        hit.style.visibility = "hidden";
+        stay.style.visibility = "hidden";
+      } else if (computerScore > 21) {
+        result = "You Won!!";
+        let h2 = document.createElement("h2");
+        let div = document.querySelector("#startGame");
+        h2.innerText = result;
+        div.appendChild(h2);
+
+        hit.style.visibility = "hidden";
+        stay.style.visibility = "hidden";
       }
 
       displayScoreComputer.innerText = computerScore;
-    
     } catch (err) {
       console.log(err);
     }
@@ -140,15 +138,15 @@ document.addEventListener("DOMContentLoaded", () => {
   getId();
 
   start.addEventListener("click", () => {
-    start.style.visibility = "hidden"
-    player(2);
+    start.style.visibility = "hidden";
+    playerCard(2);
   });
 
   hit.addEventListener("click", () => {
-    player(1);
+    playerCard(1);
   });
 
   stay.addEventListener("click", () => {
-    computer(3);
+    computerCard(3);
   });
 });
