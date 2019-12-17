@@ -2,3 +2,37 @@ html {
   height: 100%;
   width: 100%;
 }
+body  {
+  background-image: url("https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2019/12/12/Pictures/_8c4a80e4-1cde-11ea-9a53-e5149fe5d3ed.jpg");
+  /* background-image: 100%; */
+  background-repeat: no-repeat;
+  background-size: 100%; 
+  background-color:#C38F39;
+  background-position: center;
+
+   /* width: 739vh;
+  height: 789vh;  */
+  align-content: center;
+  font-family: sans-serif;
+}
+h1 {
+  text-align: center;
+  
+}
+#startGame {
+  display: flex;
+  justify-content: center;
+}
+#buttons {
+  display: flex;
+  justify-content: center;
+}
+h2 {
+  font-size: x-large;
+}
+
+p{
+  font-family: sans-serif;
+}
+
+
